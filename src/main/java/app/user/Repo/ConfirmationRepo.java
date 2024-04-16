@@ -1,8 +1,11 @@
 package app.user.Repo;
 
 import app.user.Entity.User.Confirmation;
+import app.user.Entity.User.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
 
 /**
  * @author MJ Makki
@@ -14,4 +17,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ConfirmationRepo extends JpaRepository<Confirmation, Long> {
+    Optional<Confirmation> findByKey(String key);
+    Optional<Confirmation> findByUser(User user);
 }

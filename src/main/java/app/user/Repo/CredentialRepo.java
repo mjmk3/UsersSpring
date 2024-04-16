@@ -4,6 +4,8 @@ import app.user.Entity.User.Credential;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 /**
  * @author MJ Makki
  * @version 1.0
@@ -14,4 +16,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CredentialRepo extends JpaRepository<Credential, Long> {
+    Optional<Credential> getCredentialById(Long userId);
 }
