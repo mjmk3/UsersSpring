@@ -1,7 +1,6 @@
-package app.user.Dto;
+package app.user.Entity.User;
 
 import app.user.Entity.Auditable;
-import app.user.Entity.User.User;
 import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
@@ -31,7 +30,7 @@ import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
-public class Confirmation  extends Auditable {
+public class Confirmation extends Auditable {
     private String key;
 
     @OneToOne(targetEntity = User.class, fetch = EAGER)
