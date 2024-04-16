@@ -2,6 +2,37 @@ spring:
     application:
         name: Spring
 
+    datasource:
+        url: jdbc:mysql://localhost/users
+        username: root
+        password:
+
+        jpa:
+            hibernate:
+                ddl-auto: update
+            properties:
+                hibernate:
+                    format_sql: ture
+            database-platform: org.hibernate.dialect.MySQLDialect
+            open-in-view: false
+
+        session:
+            jdbc:
+                initialize-schema: always
+
+        servlet:
+            multipart:
+                enabled: true
+                file-size-threshold: 2KB
+                max-file-size: 100GB
+                max-request-size: 107GB
+
+    jwt:
+        secret: '[a-zA-Z0-9._]^+$Guidelines89797987forAlphabeticalArraNumeralsandOtherSymbo$'
+
 
 server:
     port: 9900
+
+mfa:
+    enabled: false

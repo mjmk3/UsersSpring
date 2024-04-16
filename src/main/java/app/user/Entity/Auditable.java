@@ -13,6 +13,7 @@ import org.springframework.util.AlternativeJdkIdGenerator;
 
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.GenerationType.*;
 import static java.time.LocalDateTime.*;
 
 /**
@@ -32,7 +33,7 @@ public abstract class Auditable {
 
     @Id
     @SequenceGenerator(name = "primary_key_seq", sequenceName = "primary_key_seq", allocationSize = 1)
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "primary_key_seq")
+    @GeneratedValue(strategy = SEQUENCE, generator = "primary_key_seq")
     private Long id;
     private String referenceId = new AlternativeJdkIdGenerator().generateId().toString();
 

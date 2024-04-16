@@ -1,10 +1,12 @@
-package app.user.Entity;
+package app.user.Entity.User;
 
+import app.user.Entity.Auditable;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
+import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 
@@ -25,7 +27,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
-public class User extends Auditable{
+public class User extends Auditable {
 
     @Column(unique = true, updatable = false, nullable = false)
     private String userId;
@@ -35,7 +37,6 @@ public class User extends Auditable{
 
     @Column(unique = true)
     private String email;
-    private String password;
     private Integer loginAttempt;
     private LocalDateTime lastLoginTime;
     private String userImage;
@@ -50,11 +51,11 @@ public class User extends Auditable{
     @Column(columnDefinition = "TEXT")
     private String qrCodeImage;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "user_roles",
+    @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
-    )
-    private Role role;
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    private Collection<Role> roles = new ArrayList<>();
 }

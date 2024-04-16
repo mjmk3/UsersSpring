@@ -1,8 +1,11 @@
-package app.user.Entity;
+package app.user.Entity.User;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import app.user.Entity.Auditable;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 
@@ -25,4 +28,8 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public class Privilege extends Auditable {
     private String privilegeName;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "privileges", fetch = FetchType.LAZY)
+    private Collection<Role> roles = new ArrayList<>();
 }
