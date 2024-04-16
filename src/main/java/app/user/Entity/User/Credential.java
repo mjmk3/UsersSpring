@@ -7,8 +7,11 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 
+import java.io.Serializable;
+
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import static org.hibernate.annotations.OnDeleteAction.*;
 
 /**
@@ -28,7 +31,12 @@ import static org.hibernate.annotations.OnDeleteAction.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class Credential extends Auditable {
+public class Credential implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
+
     private String password;
 
     @OneToOne(targetEntity = User.class, fetch = EAGER)

@@ -1,16 +1,16 @@
 package app.user.Entity.User;
 
-import app.user.Entity.Auditable;
 import app.user.Helper.Enums.ERole;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import java.io.Serializable;
+import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * @author MJ Makki
@@ -29,7 +29,11 @@ import static jakarta.persistence.FetchType.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class Role extends Auditable {
+public class Role implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private ERole roleName;

@@ -4,16 +4,13 @@ import app.user.Helper.Exception.EntityIDException;
 import app.user.Model.RequestContext;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 import org.springframework.data.annotation.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-import org.springframework.util.AlternativeJdkIdGenerator;
 
 import java.time.LocalDateTime;
 
-import static jakarta.persistence.GenerationType.*;
 import static java.time.LocalDateTime.*;
 
 /**
@@ -30,12 +27,6 @@ import static java.time.LocalDateTime.*;
 @EntityListeners(AuditingEntityListener.class)
 @JsonIgnoreProperties(value = { "createdAt", "updatedAt" }, allowGetters = true)
 public abstract class Auditable {
-
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
-    private Long id;
-    private String referenceId = new AlternativeJdkIdGenerator().generateId().toString();
-
     @NotNull
     private Long createdBy;
 

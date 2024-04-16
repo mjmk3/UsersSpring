@@ -10,6 +10,7 @@ import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 import static jakarta.persistence.FetchType.*;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * @author MJ Makki
@@ -29,6 +30,10 @@ import static jakarta.persistence.FetchType.*;
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
 public class User extends Auditable {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
 
     @Column(unique = true, updatable = false, nullable = false)
     private String uuid;

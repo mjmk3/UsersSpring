@@ -7,10 +7,12 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.EAGER;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 
 /**
@@ -30,7 +32,12 @@ import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class Confirmation extends Auditable {
+public class Confirmation implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
+
     private String key;
 
     @OneToOne(targetEntity = User.class, fetch = EAGER)

@@ -6,9 +6,11 @@ import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
+import static jakarta.persistence.GenerationType.IDENTITY;
 
 /**
  * @author MJ Makki
@@ -27,7 +29,11 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(NON_DEFAULT)
-public class Privilege extends Auditable {
+public class Privilege implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private EPrivilege privilegeName;
