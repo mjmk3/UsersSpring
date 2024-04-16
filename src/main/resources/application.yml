@@ -7,19 +7,20 @@ spring:
         username: root
         password:
 
-        jpa:
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
             hibernate:
-                ddl-auto: update
-            properties:
-                hibernate:
-                    globally_quoated_identifiers: true
-                    format_sql: ture
-            database-platform: org.hibernate.dialect.MySQLDialect
-            open-in-view: false
+                globally_quoted_identifiers: true
+                format_sql: true
+        database-platform: org.hibernate.dialect.MySQLDialect
+        show-sql: true
+        open-in-view: false
 
-        session:
-            jdbc:
-                initialize-schema: always
+    session:
+        jdbc:
+            initialize-schema: never
 
         servlet:
             multipart:

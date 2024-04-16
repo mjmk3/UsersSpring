@@ -32,8 +32,7 @@ import static java.time.LocalDateTime.*;
 public abstract class Auditable {
 
     @Id
-    @SequenceGenerator(name = "primary_key_seq", sequenceName = "primary_key_seq", allocationSize = 1)
-    @GeneratedValue(strategy = SEQUENCE, generator = "primary_key_seq")
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
     private String referenceId = new AlternativeJdkIdGenerator().generateId().toString();
 

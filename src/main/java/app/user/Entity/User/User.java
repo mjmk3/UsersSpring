@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
+import static jakarta.persistence.FetchType.*;
 
 /**
  * @author MJ Makki
@@ -30,7 +31,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 public class User extends Auditable {
 
     @Column(unique = true, updatable = false, nullable = false)
-    private String userId;
+    private String uuid;
 
     @Column(unique = true, nullable = false)
     private String phone;
@@ -53,9 +54,15 @@ public class User extends Auditable {
 
     @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private Collection<Role> roles = new ArrayList<>();
+
+    @OneToOne(mappedBy = "user")
+    private Credential credential;
+
+    @OneToOne(mappedBy = "user")
+    private Confirmation confirmation;
 }

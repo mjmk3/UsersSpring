@@ -35,7 +35,7 @@ public class Role extends Auditable {
     private ERole roleName;
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "roles", fetch = LAZY)
+    @ManyToMany(mappedBy = "roles", fetch = EAGER)
     private Collection<User> users = new ArrayList<>();
 
     @JsonIgnore
