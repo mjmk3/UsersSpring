@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.OnDelete;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.*;
 import static org.hibernate.annotations.OnDeleteAction.*;
 
@@ -27,7 +27,7 @@ import static org.hibernate.annotations.OnDeleteAction.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(NON_NULL)
+@JsonInclude(NON_DEFAULT)
 public class Credential extends Auditable {
     private String password;
 

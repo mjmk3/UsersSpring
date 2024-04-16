@@ -9,7 +9,7 @@ import lombok.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.*;
 
 /**
@@ -28,7 +28,7 @@ import static jakarta.persistence.FetchType.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(NON_NULL)
+@JsonInclude(NON_DEFAULT)
 public class Role extends Auditable {
 
     @Enumerated(EnumType.STRING)

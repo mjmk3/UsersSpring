@@ -1,8 +1,12 @@
 package app.user.Repo;
 
 import app.user.Entity.User.Privilege;
+import app.user.Helper.Enums.EPrivilege;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author MJ Makki
@@ -14,4 +18,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PrivilegeRepo extends JpaRepository<Privilege, Long> {
+    List<Privilege> findByPrivilegeNameIn(List<String> privilegeNames);
+    Optional<Privilege> findByPrivilegeNameIgnoreCase(EPrivilege privilegeName);
 }

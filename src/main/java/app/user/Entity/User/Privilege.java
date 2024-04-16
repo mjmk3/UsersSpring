@@ -8,7 +8,7 @@ import lombok.*;
 
 import java.util.*;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 
 /**
  * @author MJ Makki
@@ -26,7 +26,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(NON_NULL)
+@JsonInclude(NON_DEFAULT)
 public class Privilege extends Auditable {
 
     @Enumerated(EnumType.STRING)

@@ -26,7 +26,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(NON_NULL)
+@JsonInclude(NON_DEFAULT)
 public class User extends Auditable {
 
     @Column(unique = true, updatable = false, nullable = false)

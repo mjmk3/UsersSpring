@@ -9,7 +9,7 @@ import org.hibernate.annotations.OnDelete;
 
 import java.util.UUID;
 
-import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_DEFAULT;
 import static jakarta.persistence.FetchType.EAGER;
 import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 
@@ -29,7 +29,7 @@ import static org.hibernate.annotations.OnDeleteAction.CASCADE;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonInclude(NON_NULL)
+@JsonInclude(NON_DEFAULT)
 public class Confirmation extends Auditable {
     private String key;
 
