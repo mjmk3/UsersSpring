@@ -1,6 +1,7 @@
 package app.user.Entity.User;
 
 import app.user.Entity.Auditable;
+import app.user.Helper.Enums.ERole;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
@@ -29,7 +30,9 @@ import static jakarta.persistence.FetchType.*;
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
 public class Role extends Auditable {
-    private String roleName;
+
+    @Enumerated(EnumType.STRING)
+    private ERole roleName;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "roles", fetch = LAZY)
@@ -42,4 +45,8 @@ public class Role extends Auditable {
             joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "privilege_id", referencedColumnName = "id"))
     private Collection<Privilege> privileges = new ArrayList<>();
+
+    public Role(String roleName) {
+        this.roleName = ERole.valueOf(roleName); // Assuming ERole is an enum
+    }
 }

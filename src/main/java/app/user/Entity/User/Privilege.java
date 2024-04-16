@@ -1,6 +1,7 @@
 package app.user.Entity.User;
 
 import app.user.Entity.Auditable;
+import app.user.Helper.Enums.EPrivilege;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
@@ -27,9 +28,15 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @AllArgsConstructor
 @JsonInclude(NON_NULL)
 public class Privilege extends Auditable {
-    private String privilegeName;
+
+    @Enumerated(EnumType.STRING)
+    private EPrivilege privilegeName;
 
     @JsonIgnore
     @ManyToMany(mappedBy = "privileges", fetch = FetchType.LAZY)
     private Collection<Role> roles = new ArrayList<>();
+
+    public Privilege(String privilegeName) {
+        this.privilegeName = EPrivilege.valueOf(privilegeName); // Assuming EPrivilege is an enum
+    }
 }
